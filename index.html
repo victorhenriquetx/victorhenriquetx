@@ -3,58 +3,139 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Victor Henrique C. Teixeira — Resume</title>
+    <title>Victor Teixeira</title>
     <style>
+      @import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap");
+
       :root {
         color-scheme: light;
+        --ink: #141414;
+        --muted: #5e5e5e;
+        --accent: #1c5cff;
+        --paper: #f7f4ef;
+        --rule: rgba(20, 20, 20, 0.12);
+      }
+
+      * {
+        box-sizing: border-box;
       }
 
       html,
       body {
         margin: 0;
         padding: 0;
-        background: #ffffff;
-        color: #111111;
-        font-family: "Georgia", "Times New Roman", serif;
-        line-height: 1.45;
+      }
+
+      body {
+        background: var(--paper);
+        background-image:
+          radial-gradient(circle at 20% 20%, rgba(28, 92, 255, 0.08), transparent 45%),
+          radial-gradient(circle at 90% 10%, rgba(20, 20, 20, 0.05), transparent 40%),
+          linear-gradient(180deg, rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0));
+        color: var(--ink);
+        font-family: "IBM Plex Mono", "Courier New", monospace;
+        line-height: 1.6;
+        min-height: 100vh;
       }
 
       main {
-        max-width: 720px;
-        margin: 48px auto;
-        padding: 0 24px;
+        max-width: 860px;
+        margin: 64px auto 80px;
+        padding: 0 24px 32px;
+      }
+
+      header {
+        display: grid;
+        gap: 18px;
+      }
+
+      .topbar {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px 20px;
+        align-items: center;
+        justify-content: flex-start;
       }
 
       h1 {
-        font-size: 28px;
-        margin: 0 0 4px;
-        font-weight: 700;
+        font-family: "Space Grotesk", "Arial", sans-serif;
+        font-size: 16px;
+        text-transform: uppercase;
+        letter-spacing: 0.18em;
+        margin: 0;
+      }
+
+      .tagline {
+        font-size: 15px;
+        color: var(--muted);
+        max-width: 560px;
+      }
+
+      .meta {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        font-size: 13px;
+        color: var(--muted);
+      }
+
+      nav {
+        margin-top: 0;
+        font-size: 12px;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+      }
+
+      nav a {
+        color: var(--ink);
+        text-decoration: none;
+        border-bottom: 1px solid var(--rule);
+        padding-bottom: 2px;
+      }
+
+      nav a:hover {
+        color: var(--accent);
+        border-bottom-color: var(--accent);
+      }
+
+      .rule {
+        border: 0;
+        border-top: 1px solid var(--rule);
+        margin: 28px 0 24px;
+      }
+
+      section {
+        margin-bottom: 32px;
       }
 
       h2 {
-        font-size: 16px;
-        text-transform: uppercase;
+        font-size: 14px;
+        text-transform: lowercase;
         letter-spacing: 0.08em;
-        margin: 28px 0 8px;
+        margin: 0 0 12px;
+        color: var(--muted);
       }
 
-      h3 {
-        font-size: 16px;
-        margin: 16px 0 4px;
-        font-weight: 700;
+      h2 span {
+        color: var(--ink);
       }
 
-      p {
-        margin: 6px 0;
+      .bracket {
+        color: rgba(28, 92, 255, 0.65);
       }
 
       ul {
-        margin: 8px 0 0 18px;
+        list-style: none;
+        margin: 0;
         padding: 0;
+        display: grid;
+        gap: 10px;
       }
 
       li {
-        margin: 4px 0;
+        display: grid;
+        gap: 4px;
       }
 
       .row {
@@ -64,98 +145,233 @@
         align-items: baseline;
       }
 
-      .row strong {
-        font-weight: 700;
+      .year {
+        font-size: 12px;
+        color: var(--muted);
       }
 
-      .meta {
-        margin-top: 2px;
-        font-size: 15px;
+      .label {
+        font-weight: 600;
+      }
+
+      a {
+        color: var(--ink);
+      }
+
+      a:hover {
+        color: var(--accent);
+      }
+
+      .note {
+        font-size: 13px;
+        color: var(--muted);
+      }
+
+      .project-tag {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        font-size: 11px;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--accent);
+      }
+
+      .project-block {
+        margin-top: 8px;
+        padding-left: 14px;
+        border-left: 2px solid rgba(28, 92, 255, 0.2);
+        color: var(--muted);
+      }
+
+      footer {
+        margin-top: 48px;
+        font-size: 12px;
+        color: var(--muted);
+      }
+
+      .fade {
+        animation: fade-in 0.8s ease both;
+      }
+
+      .fade:nth-child(2) {
+        animation-delay: 0.05s;
+      }
+
+      .fade:nth-child(3) {
+        animation-delay: 0.1s;
+      }
+
+      .fade:nth-child(4) {
+        animation-delay: 0.15s;
+      }
+
+      @keyframes fade-in {
+        from {
+          opacity: 0;
+          transform: translateY(6px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @media (max-width: 640px) {
+        main {
+          margin-top: 40px;
+        }
+
+        nav {
+          gap: 10px;
+        }
       }
     </style>
   </head>
   <body>
     <main>
-      <h1>Victor Henrique C. Teixeira</h1>
-      <p class="meta">Email: henriquevictor96@gmail.com</p>
+      <header class="fade">
+        <div class="topbar">
+          <h1>Victor Teixeira</h1>
+          <nav>
+            <a href="#links">links</a>
+            <a href="#work">work</a>
+            <a href="#projects">projects</a>
+            <a href="#interests">interests</a>
+            <!-- <a href="#notes">notes</a> -->
+          </nav>
+        </div>
+        <p class="tagline">
+          Software engineer focused on product strategy, data systems, and applied AI. I build
+          reliable, high-performance tools that help teams execute with clarity.
+        </p>
+        <div class="meta">
+          <ul>
+            <li class="row">
+              <span>Based in: São Paulo</span>
+            </li>
+            <li class="row">
+              <span>Currently at: BCG</span>
+            </li>
+            <li class="row">
+              <span>Email: henriquevictor96@gmail.com</span>
+            </li>
+          </ul>
+        </div>
+      </header>
 
-      <h2>Education</h2>
-      <div class="row">
-        <strong>University of Campinas | Campinas, SP</strong>
-        <span>March 2014 – July 2020</span>
-      </div>
-      <p>Bachelor of Science in Computer Science</p>
+      <hr class="rule" />
 
-      <h2>Skills</h2>
-      <p>Programing Languages: Python, Javascript, Typescript, SQL, C#</p>
-      <p>Web Frameworks: React, Django, Node.js, .Net Core</p>
-      <p>Testing: Jest, React Test Library, UnitTest, Cypress, Selenium, Karma, Jasmine</p>
-      <p>Devops &amp; Cloud: AWS, Azure, Docker, Kubernetes</p>
-      <p>Data Engineering: Databricks, dbt</p>
-      <p>GenAI Tools: PydanticAI, Azure OpenAI</p>
-      <p>Languages: Portuguese (Native), English (Fluent)</p>
+      <section id="links" class="fade">
+        <h2><span class="bracket">[</span><span>links</span><span class="bracket">]</span></h2>
+        <ul>
+          <li class="row">
+            <a href="https://github.com/victorhenriquetx">github</a>
+            <span class="note">code, tooling, and experiments</span>
+          </li>
+          <li class="row">
+            <a href="https://www.linkedin.com/in/victorhenriquetx">linkedin</a>
+            <span class="note">work history and long-form updates</span>
+          </li>
+        </ul>
+      </section>
 
-      <h2>Experience</h2>
-      <h3>The Boston Consulting Group | São Paulo, SP</h3>
-      <p>April 2023 – Current</p>
-      <p>Software Engineer/Senior Software Engineer</p>
-      <ul>
-        <li>
-          Contributed to the architecture, development, testing, and maintenance of internal BCG
-          products including Flagship BCG product Orgbuilder and Moonshot product RetailAI, also
-          deploying and customizing them across BCG clients.
-        </li>
-        <li>
-          Developed a digital value chain strategy web application for a national oil company in
-          South America.
-        </li>
-        <li>
-          Developed a pricing strategy web application for a Brazilian car rental company.
-        </li>
-        <li>
-          Developed an AI foundations strategy for a leading consumer foods and retail conglomerate
-          in Latin America.
-        </li>
-        <li>
-          Developed a B2C pricing, procurement and org design strategy for an office supplies
-          retailer.
-        </li>
-      </ul>
+      <section id="work" class="fade">
+        <h2><span class="bracket">[</span><span>work</span><span class="bracket">]</span></h2>
+        <ul>
+          <li>
+            <div class="row">
+              <span class="label">The Boston Consulting Group</span>
+              <span class="year">2023 - now</span>
+            </div>
+            <span class="note">Senior software engineer building internal products and client solutions.</span>
+            <div class="project-block">
+              <span class="project-tag">projects</span>
+              <div class="row">
+                <span class="label">RetailAI</span>
+                <span class="year">strategy platform</span>
+              </div>
+              <span class="note">Pricing and demand insights for retail operators across North America and LATAM.</span>
+              <div class="row" style="margin-top: 8px;">
+                <span class="label">Orgbuilder</span>
+                <span class="year">org design</span>
+              </div>
+              <span class="note">Workflow tooling for org design, scenario planning, and deployment.</span>
+            </div>
+          </li>
+          <li>
+            <div class="row">
+              <span class="label">Neuralmind</span>
+              <span class="year">2021 - 2022</span>
+            </div>
+            <span class="note">Backend, platform, and automation for compliance tooling.</span>
+            <div class="project-block">
+              <span class="project-tag">project</span>
+              <div class="row">
+                <span class="label">Tagger</span>
+                <span class="year">prototype</span>
+              </div>
+              <span class="note">Mobile capture, OCR, and analysis for field teams.</span>
+            </div>
+          </li>
+        </ul>
+      </section>
 
-      <h3>Neuralmind | Campinas, SP</h3>
-      <p>March 2021 – March 2022</p>
-      <p>Software Development Intern/ Software Development Analyst</p>
-      <ul>
-        <li>
-          Contributed to the design, development, testing, and maintenance of a robust and scalable
-          system for automating supplier compliance and risk analysis.
-        </li>
-        <li>
-          Created and maintained REST APIs and asynchronous tasks to reduce repetitive manual work.
-        </li>
-        <li>
-          Deployed software packages in AWS Lambda and helped manage a large database stored in the
-          cloud.
-        </li>
-        <li>
-          Helped major product pivot by prototyping and developing responsive and reusable
-          interfaces using the Material Design style guide.
-        </li>
-        <li>
-          Worked on unit testing, end-to-end testing and web application testing.
-        </li>
-        <li>
-          Developed a hybrid mobile app for capturing and analyzing text in documents pictures.
-        </li>
-        <li>
-          Created web scraping application for extracting fiscal data from Brazil’s tax authority
-          website, in addition to transforming and loading the data into a database.
-        </li>
-        <li>
-          Designed prototypes and wireframes to create clean and easy-to-use user interfaces for a
-          new product..
-        </li>
-      </ul>
+      <section id="projects" class="fade">
+        <h2><span class="bracket">[</span><span>projects</span><span class="bracket">]</span></h2>
+        <p class="note">Soon.</p>
+      </section>
+
+      <section id="interests" class="fade">
+        <h2><span class="bracket">[</span><span>interests</span><span class="bracket">]</span></h2>
+        <ul>
+          <li class="row">
+            <span class="label">Focus</span>
+            <span class="note">AI foundations, pricing systems, and lightweight product strategy.</span>
+          </li>
+          <li class="row">
+            <span class="label">Learning</span>
+            <span class="note">Rust, infra for ML, and design systems for internal tooling.</span>
+          </li>
+          <li class="row">
+            <span class="label">Open</span>
+            <span class="note">Small advisory work for data or AI product teams.</span>
+          </li>
+        </ul>
+      </section>
+
+      <!--
+      <section id="notes" class="fade">
+        <h2><span class="bracket">[</span><span>notes</span><span class="bracket">]</span></h2>
+        <ul>
+          <li>
+            <div class="row">
+              <span class="label">Small systems, big leverage</span>
+              <span class="year">draft</span>
+            </div>
+            <span class="note">Why boring workflows and clear docs keep teams moving.</span>
+          </li>
+          <li>
+            <div class="row">
+              <span class="label">Measuring calm</span>
+              <span class="year">draft</span>
+            </div>
+            <span class="note">Latency, error budgets, and product trust.</span>
+          </li>
+        </ul>
+      </section>
+      -->
+
+      <footer>
+        <span>copyright <span id="year"></span> - victor henrique c. teixeira</span>
+      </footer>
     </main>
+
+    <script>
+      const year = document.getElementById("year");
+      if (year) {
+        year.textContent = new Date().getFullYear();
+      }
+    </script>
   </body>
 </html>
